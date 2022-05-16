@@ -1,0 +1,22 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{6}{c}}
+\hline\hline
+          &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}\\
+          &\multicolumn{1}{c}{Price}&\multicolumn{1}{c}{Quality}&\multicolumn{1}{c}{Price}&\multicolumn{1}{c}{Quality}&\multicolumn{1}{c}{Price}&\multicolumn{1}{c}{Quality}\\
+\hline
+Num. Providers&   -6.222\sym{***}&    3.814\sym{***}&   -6.466\sym{***}&    3.622\sym{***}&   -8.083\sym{***}&    4.362\sym{***}\\
+          & (-64.09)         &  (36.75)         & (-38.72)         &  (20.39)         & (-29.72)         &  (15.14)         \\
+[1em]
+Population&                  &                  &-0.000379         &-0.000456\sym{*}  &-0.000855\sym{*}  &-0.000580         \\
+          &                  &                  &  (-1.84)         &  (-2.05)         &  (-2.51)         &  (-1.58)         \\
+[1em]
+Pct. Broadband Access&                  &                  &                  &                  &   -0.271\sym{***}&   0.0339         \\
+          &                  &                  &                  &                  &  (-6.27)         &   (0.73)         \\
+\hline
+\(N\)     &    29052         &    26368         &    29052         &    26368         &    28910         &    26262         \\
+\hline\hline
+\multicolumn{7}{l}{\footnotesize \textit{t} statistics in parentheses}\\
+\multicolumn{7}{l}{\footnotesize \sym{*} \(p<0.05\), \sym{**} \(p<0.01\), \sym{***} \(p<0.001\)}\\
+\end{tabular}
+}

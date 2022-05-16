@@ -34,12 +34,20 @@ encode lowestpricedterrestrialbroadband, gen(lowestprice_num)
 
 *Regressions
 
-reg lowestprice_num allprovidercount_2020
-reg lowestprice_num allprovidercount_2020 pop_num
-reg lowestprice_num allprovidercount_2020 pop_num percent 
-areg lowestprice_num allprovidercount_2020 pop_num, absorb(state)
-areg lowestprice_num allprovidercount_2020 pop_num, absorb(county)
+eststo price1: reg lowestprice_num allprovidercount_2020, absorb(state)
+eststo price2: reg lowestprice_num c.allprovidercount_2020##c.pop_num, absorb(state)
+eststo price3: reg lowestprice_num c.allprovidercount_2020##c.pop_num##c.percent, absorb(state)
 
+eststo quality1: reg averagembps allprovidercount_2020, absorb(state)
+eststo quality2: reg averagembps c.allprovidercount_2020##c.pop_num, absorb(state)
+eststo quality3: reg averagembps c.allprovidercount_2020##c.pop_num##c.percent, absorb(state)
+
+esttab price1 quality1 price2 quality2 price3 quality3 using "$parent/output/reg_table.tex", ///
+	keep(allprovidercount_2020 pop_num percent) ///
+	order(allprovidercount_2020 pop_num percent) ///
+	mtitles("Price" "Quality" "Price" "Quality" "Price" "Quality" "Price" "Quality")  ///
+	coeflabels(allprovidercount_2020 "Num. Providers" pop_num "Population" percent "Pct. Broadband Access")  ///
+	tex  replace compress
 
 *Figures
 	
@@ -58,7 +66,7 @@ binscatter lowestprice_num allprovidercount_2020, absorb(state) ///
 binscatter lowestprice_num averagembps, absorb(state) ///
 	ytitle("Lowest Priced Terrestrial Broadband Plan ($/month)", size(small)) xtitle("Average Download Speed (Mbps)", size(small))
 	graph export "$parent/output/p_vs_wavg_state_fe.pdf", replace
-	
+
 	
 /*
 use `"$data/$broadband_availability_speed"', clear
